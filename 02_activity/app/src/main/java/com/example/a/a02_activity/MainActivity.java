@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         /*Toast.makeText(MainActivity.this, "id: " + id, Toast.LENGTH_SHORT).show();*/
 
         Intent intent = new Intent(MainActivity.this, NewActivity.class);
+        intent.putExtra("id", id);
         startActivity(intent);
 
 
