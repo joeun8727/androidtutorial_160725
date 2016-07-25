@@ -6,6 +6,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     WebView webView;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnOkClick(View v){
-
+        EditText editURL = (EditText)findViewById(R.id.editURL);
+        String url = editURL.getText().toString();
+        webView.loadUrl(url);
     }
 }
