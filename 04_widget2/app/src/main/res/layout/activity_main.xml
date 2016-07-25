@@ -43,5 +43,15 @@
             android:text="radio3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <EditText
+            android:inputType="number"
+            android:hint="input here"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
     </RadioGroup>
+    <Button
+        android:text="ok"
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
