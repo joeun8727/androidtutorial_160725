@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
             super.handleMessage(msg);
             if(msg.what == MY_THREAD){
                 textView.setText("count : " + msg.arg1);
+                progressBar.setProgress(msg.arg1);
             }
         }
     };
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     class MyThread extends Thread{
         @Override
         public void run() {
-            for(int i=0; i< 100; i++){
+            for(int i=1; i<= 100; i++){
                 try {
                     sleep(100);
                 } catch (InterruptedException e) {
@@ -38,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     TextView textView;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView)findViewById(R.id.textView);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         MyThread th = new MyThread();
         th.start();
     }
