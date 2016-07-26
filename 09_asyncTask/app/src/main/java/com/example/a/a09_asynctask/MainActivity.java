@@ -5,11 +5,23 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
     class MyAsyncTask extends AsyncTask<Integer, Integer, String>{
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            textView.setText("count :" + values[0]);
+        }
 
         @Override
         protected String doInBackground(Integer... integers) {
@@ -17,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
             for(int i=startValue; i<100; i++){
 
                 Log.d("asyncTask", "count : " + i);
+                publishProgress(i);
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            return null;
+            return "DONE";
         }
     }
     @Override
