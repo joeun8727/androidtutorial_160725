@@ -2,6 +2,7 @@ package com.example.a.a05_webview;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     WebView webView;
@@ -29,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
             dlg.dismiss();
             super.onPageFinished(view, url);
         }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Toast.makeText(MainActivity.this, Uri.parse(url).getHost() , Toast.LENGTH_SHORT).show();
+            if(Uri.parse(url).getHost().equals("m.news.naver.com")){
+                return true;
+            }
+            return super.shouldOverrideUrlLoading(view, url);
+        }
     }
 
     @Override
@@ -39,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         dlg = new ProgressDialog(MainActivity.this);
 
         webView = (WebView)findViewById(R.id.webview);
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new MyWebViewClient());
         WebSettings ws = webView.getSettings();
         ws.setJavaScriptEnabled(true);
         webView.loadUrl("http://www.daum.net");
