@@ -45,7 +45,7 @@ public class TestDBHandler {
             String name = c.getString(c.getColumnIndex("name"));
             int age = c.getInt(c.getColumnIndex("age"));
             String address = c.getString(c.getColumnIndex("address"));
-            Log.d("sqlite", "name: " + name + "age: " + age + "address :" + address);
+            Log.d("sqlite", "name: " + name + " age: " + age + " address :" + address);
         }
     }
 }
