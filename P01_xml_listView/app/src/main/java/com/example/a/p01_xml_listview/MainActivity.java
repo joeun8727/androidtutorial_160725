@@ -3,7 +3,6 @@ package com.example.a.p01_xml_listview;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -24,20 +23,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    //ArrayAdapter<String> adapter;
+    ArrayList<WeatherInfo> list = new ArrayList<WeatherInfo>();
+    WeatherAdapter adapter;
 
-    ArrayList<MyData> list = new ArrayList<MyData>();
-
-    class MyData{
-        public MyData(String imgId, String strDesc) {
-            this.imgId = imgId;
-            this.strDesc = strDesc;
-        }
-        String imgId;
-        String strDesc;
+    class WeatherInfo{
+        int iconId;
+        String forecast;
     }
 
-    class MyAdapter extends BaseAdapter {
+    class WeatherAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -57,22 +51,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView == null){
-                LayoutInflater inf = getLayoutInflater();
-                convertView = inf.inflate(R.layout.item_view, null);
+                convertView = getLayoutInflater().inflate(R.layout.item_view, null);
             }
-            MyData data = list.get(position);
+            WeatherInfo data = list.get(position);
             TextView itemDesc = (TextView) convertView.findViewById(R.id.itemDesc);
             ImageView itemImg = (ImageView) convertView.findViewById(R.id.itemImg);
-            if(data.imgId.indexOf("구름") > -1){
-                itemImg.setImageResource(R.drawable.cloud);
-            }else if(data.imgId.indexOf("비")> -1){
-                itemImg.setImageResource(R.drawable.rain);
-            }else if(data.imgId.indexOf("맑음")> -1){
-                itemImg.setImageResource(R.drawable.sunny);
-            }else if(data.imgId.indexOf("흐림") > -1){
-                itemImg.setImageResource(R.drawable.cloud);
-            }
-            itemDesc.setText(data.strDesc);
+            itemImg.setImageResource(data.iconId);
+            itemDesc.setText(data.forecast);
             return convertView;
         }
     }
@@ -98,11 +83,19 @@ public class MainActivity extends AppCompatActivity {
                 String strDay = getElementText(data, "day");
                 String strTemp = getElementText(data, "temp");
                 String strWfKor = getElementText(data, "wfKor");
-                str = strDay + " day" + strHour + " hour" + strWfKor + " wfKor" + strTemp + " temp";
-                MyData myData = new MyData(strWfKor,str);
-                list.add(myData);
+
+                WeatherInfo info = new WeatherInfo();
+                if(strWfKor.indexOf("비") > -1){
+                    info.iconId = R.drawable.rain;
+                }else if(strWfKor.indexOf("구름") > -1 || strWfKor.indexOf("흐림") > -1){
+                    info.iconId = R.drawable.cloud;
+                }else if(strWfKor.indexOf("맑음") > -1){
+                    info.iconId = R.drawable.sunny;
+                }
+                info.forecast = strDay + " day" + strHour + " hour" + strWfKor + " wfKor" + strTemp + " temp";
+                list.add(info);
             }
-           // adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
         }
 
         @Override
@@ -126,8 +119,7 @@ public class MainActivity extends AppCompatActivity {
         MyDomParser task = new MyDomParser();
         task.execute("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1154052000");
         listView = (ListView)findViewById(R.id.listView);
-       // adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1 , list);
-        MyAdapter adapter = new MyAdapter();
+        adapter = new WeatherAdapter();
         listView.setAdapter(adapter);
 
     }
