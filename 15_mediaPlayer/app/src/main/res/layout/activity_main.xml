@@ -9,8 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.a.a15_mediaplayer.MainActivity">
 
-    <TextView
+    <SeekBar
+        android:id="@+id/seekbar"
+        android:progress="30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnPlay"
+        android:onClick="onBtnPlayClick"
+        android:layout_below="@+id/seekbar"
+        android:text="start"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_below="@+id/btnPlay"
+        android:text="stop"
+        android:onClick="onBtnStopClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
