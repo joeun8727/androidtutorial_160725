@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBtnClick(View v){
         int num = myService.getRandomNumber();
         Toast.makeText(MainActivity.this, "num : " + num, Toast.LENGTH_SHORT).show();
+        //MyIntentService.startActionFoo(this, "abc", "def");
     }
 
 }
