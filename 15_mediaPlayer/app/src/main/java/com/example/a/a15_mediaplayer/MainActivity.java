@@ -34,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     while(mp != null){
+                        seekBar.setProgress(mp.getCurrentPosition());
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        seekBar.setProgress(mp.getCurrentPosition());
                     }
                 }
             });
