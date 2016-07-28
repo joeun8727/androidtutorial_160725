@@ -10,7 +10,22 @@
     tools:context="com.example.a.a23_fragment.MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.a.a23_fragment.BlankFragment"
+        android:layout_below="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.a.a23_fragment.BlankFragment"
+        android:layout_below="@+id/fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_blank" />
 </RelativeLayout>
