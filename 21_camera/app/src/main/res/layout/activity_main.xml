@@ -16,6 +16,8 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
     <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/lighthouse"
         android:layout_below="@+id/btn"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
