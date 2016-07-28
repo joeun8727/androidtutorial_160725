@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int MY_DIALOG = 100;
     public void onBtnClick(View v){
-        showDialog(MY_DIALOG);
+        //showDialog(MY_DIALOG);
+        MyPopup popup = new MyPopup(this);
+        popup.show();
     }
 
     @Override
