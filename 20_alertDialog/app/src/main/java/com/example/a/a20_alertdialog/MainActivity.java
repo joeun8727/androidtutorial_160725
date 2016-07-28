@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("TITLE");
             builder.setMessage("MESSAGE");
+            builder.setCancelable(false); //dialog 바깥부분 눌러도 종료 x
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
