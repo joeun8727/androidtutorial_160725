@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -36,9 +37,10 @@ public class DbHandler {
             double lat = c.getDouble(c.getColumnIndex("latitude"));
             double lon = c.getDouble(c.getColumnIndex("longitude"));
             long timestamp = c.getLong(c.getColumnIndex("timestamp"));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-            str += "latitude : "+ lat +" longitude : "+ lon
-                    +" timestamp : "+ timestamp + "\n";
+            str += "lat : "+ String.format("%.2f",lat) +" lon : "+ String.format("%.2f",lon)
+                    +" time : "+ dateFormat.format(new Date(timestamp)) + "\n";
         }
         return str;
     }
