@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBtnClick(View v){
         TextView textView = (TextView) findViewById(R.id.textView);
-        dbHandler.selectAll(textView);
+        String str = dbHandler.selectAll();
+        textView.setText(str);
     }
 
 }

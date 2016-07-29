@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
-import android.widget.TextView;
 
 import java.util.Date;
 
@@ -29,14 +28,19 @@ public class DbHandler {
         db.insert("loc", null, values);
     }
 
-    public void selectAll(TextView v){
+    public String selectAll(){
+        String str = "";
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.query("loc", null, null, null, null, null, null, null);
-        String str = "";
         while(c.moveToNext()){
-            str += c.getString(c.getColumnIndex("latitude"));
+            double lat = c.getDouble(c.getColumnIndex("latitude"));
+            double lon = c.getDouble(c.getColumnIndex("longitude"));
+            long timestamp = c.getLong(c.getColumnIndex("timestamp"));
+
+            str += "latitude : "+ lat +" longitude : "+ lon
+                    +" timestamp : "+ timestamp + "\n";
         }
-        v.setText(str);
+        return str;
     }
 }
 
