@@ -35,6 +35,7 @@ public class DbHandler {
         Cursor c = db.query("loc", null, null, null, null, null, null, null);
         while(c.moveToNext()){
             double lat = c.getDouble(c.getColumnIndex("latitude"));
+
             double lon = c.getDouble(c.getColumnIndex("longitude"));
             long timestamp = c.getLong(c.getColumnIndex("timestamp"));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
