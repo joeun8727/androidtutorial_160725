@@ -9,8 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.a.p02_gps.MainActivity">
 
-    <TextView
+    <Button
+        android:onClick="onBtnClick"
+        android:id="@+id/btnSelect"
+        android:text="select"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_below="@+id/btnSelect"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="" />
 </RelativeLayout>
