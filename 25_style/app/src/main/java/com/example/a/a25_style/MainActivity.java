@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+         /*
         Button zeroButton = (Button) findViewById(R.id.zeroBtn);
         Button oneButton = (Button) findViewById(R.id.oneBtn);
 
@@ -44,6 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 selectedTextView.setText(working);
                 workingTextView.setText("0");
             }
-        });
+        });*/
     }
 }
